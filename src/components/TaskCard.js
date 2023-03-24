@@ -1,5 +1,6 @@
 import { useTasks } from "@/context/TaskContext"
 import { useRouter } from "next/navigation"
+import { toast } from "react-hot-toast";
 
 export const TaskCard = ({ task }) => {
 
@@ -15,7 +16,8 @@ export const TaskCard = ({ task }) => {
                 e.stopPropagation()
                 const accept = window.confirm('Are you sure?')
                 if (accept) {
-                    deleteTask(task.id)
+                    deleteTask(task.id);
+                    toast.success('Task deleted successfully');
                 }
             }}>
                 Delete
