@@ -9,19 +9,23 @@ export const TaskCard = ({ task }) => {
     const { deleteTask } = useTasks()
 
     return (
-        <div style={{ background: "#202020", color: "white" }} onClick={() => router.push(`/edit/${task.id}`)}>
-            <h1>{task.title}</h1>
-            <p>{task.description}</p>
-            <button type="" onClick={(e) => {
-                e.stopPropagation()
-                const accept = window.confirm('Are you sure?')
-                if (accept) {
-                    deleteTask(task.id);
-                    toast.success('Task deleted successfully');
-                }
-            }}>
-                Delete
-            </button>
+        <div className="bg-gray-700 hover:bg-gray-700 cursor-pointer px-20 py-5 m-2" 
+        onClick={() =>router.push(`/edit/${task.id}`)}>
+            <div className="flex justify-between">
+                <h1>{task.title}</h1>
+                <button className="bg-red-700 hover:bg-red-600 px-3 py-1 inline-flex items-center" type="" onClick={(e) => {
+                    e.stopPropagation()
+                    const accept = window.confirm('Are you sure?')
+                    if (accept) {
+                        deleteTask(task.id);
+                        toast.success('Task deleted successfully');
+                    }
+                }}>
+                    Delete
+                </button>
+            </div>
+            <p className="text-gray-300">{task.description}</p>
+            <span className="text-gray-400 text-xs">{task.id}</span>
         </div>
     )
 }
